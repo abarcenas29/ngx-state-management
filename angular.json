@@ -2,8 +2,70 @@
   "version": 2,
   "projects": {
     "assets": "libs/assets",
-    "cart": "libs/cart",
+    "cart": {
+      "projectType": "library",
+      "root": "libs/cart",
+      "sourceRoot": "libs/cart/src",
+      "prefix": "ng-state-management",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:package",
+          "outputs": ["dist/libs/cart"],
+          "options": {
+            "project": "libs/cart/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/cart/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/cart/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/cart"],
+          "options": {
+            "jestConfig": "libs/cart/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/cart/src/**/*.ts",
+              "libs/cart/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "common-components": "libs/common-components",
+    "interfaces": {
+      "root": "libs/interfaces",
+      "sourceRoot": "libs/interfaces/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/interfaces/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/interfaces"],
+          "options": {
+            "jestConfig": "libs/interfaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "ng-rx-store": {
       "projectType": "application",
       "root": "apps/ng-rx-store",
@@ -26,7 +88,8 @@
             ],
             "styles": [
               "apps/ng-rx-store/src/styles.scss",
-              "libs/assets/src/tailwind.css"
+              "libs/assets/src/tailwind.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

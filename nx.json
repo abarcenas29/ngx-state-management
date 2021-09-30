@@ -27,6 +27,12 @@
     ]
   },
   "projects": {
+    "cart": {
+      "tags": ["type:ui"]
+    },
+    "interfaces": {
+      "tags": ["type:interface"]
+    },
     "ng-rx-store": {
       "tags": []
     },

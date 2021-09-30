@@ -1,7 +1,36 @@
 <div
   class="bg-green-800 h-screen w-20 flex items-center justify-center flex-col"
 >
-  <div>cart</div>
+  <div class="flex justify-center items-center h-10 mt-5">
+    <a
+      class="w-10 h-10 fill-curent text-white hover:text-green-500 relative"
+      [routerLink]="['/cart/list']"
+      routerLinkActive="router-link-active"
+    >
+      <div
+        *ngIf="cartCount > 0"
+        class="
+          absolute
+          bg-white
+          bottom-0
+          flex
+          items-center
+          justify-center
+          p-1
+          h-5
+          w-5
+          bg-green-500
+          text-white
+          right-0
+          rounded-full
+          text-sm
+        "
+      >
+        {{ cartCount }}
+      </div>
+      <ng-state-management-icon-cart></ng-state-management-icon-cart>
+    </a>
+  </div>
   <div class="text-3xl text-center flex-1 vertical-text text-white">
     Rx Store
   </div>

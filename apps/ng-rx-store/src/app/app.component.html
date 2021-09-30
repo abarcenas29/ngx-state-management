@@ -1,5 +1,7 @@
 <div class="flex flex-1 h-screen w-screen bg-gray-300">
-  <ng-state-management-main-nav></ng-state-management-main-nav>
+  <ng-state-management-main-nav
+    [cartCount]="(cartCount$ | async) || 0"
+  ></ng-state-management-main-nav>
   <div class="flex-1">
     <router-outlet></router-outlet>
   </div>
