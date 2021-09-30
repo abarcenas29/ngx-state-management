@@ -1,0 +1,33 @@
+{
+  "root": "libs/cart",
+  "sourceRoot": "libs/cart/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/cart",
+        "main": "libs/cart/src/index.ts",
+        "tsConfig": "libs/cart/tsconfig.lib.json",
+        "assets": ["libs/cart/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/cart/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/cart"],
+      "options": {
+        "jestConfig": "libs/cart/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["type:ui"]
+}

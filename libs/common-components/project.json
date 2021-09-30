@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/common-components",
+  "sourceRoot": "libs/common-components/src",
+  "prefix": "ng-state-management",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/common-components"],
+      "options": {
+        "jestConfig": "libs/common-components/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/common-components/src/**/*.ts",
+          "libs/common-components/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:ui"]
+}

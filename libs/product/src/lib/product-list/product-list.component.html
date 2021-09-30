@@ -1,0 +1,9 @@
+<div class="grid grid-cols-12 gap-2 h-screen overflow-y-auto">
+  <div class="col-span-10 h-full flex flex-col">
+    <ul class="p-4 flex-1 grid grid-cols-4 gap-4 items-center">
+      <li *ngFor="let product of productList">
+        <demo-product-product-card></demo-product-product-card>
+      </li>
+    </ul>
+  </div>
+</div>

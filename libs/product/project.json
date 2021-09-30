@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/product",
+  "sourceRoot": "libs/product/src",
+  "prefix": "demo-product",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/product"],
+      "options": {
+        "project": "libs/product/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/product/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/product/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "libs/production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/product"],
+      "options": {
+        "jestConfig": "libs/product/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/product/src/**/*.ts",
+          "libs/product/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:business"]
+}

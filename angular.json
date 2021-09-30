@@ -1,0 +1,164 @@
+{
+  "version": 2,
+  "projects": {
+    "assets": "libs/assets",
+    "cart": "libs/cart",
+    "common-components": "libs/common-components",
+    "ng-rx-store": {
+      "projectType": "application",
+      "root": "apps/ng-rx-store",
+      "sourceRoot": "apps/ng-rx-store/src",
+      "prefix": "ng-state-management",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/ng-rx-store",
+            "index": "apps/ng-rx-store/src/index.html",
+            "main": "apps/ng-rx-store/src/main.ts",
+            "polyfills": "apps/ng-rx-store/src/polyfills.ts",
+            "tsConfig": "apps/ng-rx-store/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/ng-rx-store/src/favicon.ico",
+              "apps/ng-rx-store/src/assets"
+            ],
+            "styles": [
+              "apps/ng-rx-store/src/styles.scss",
+              "libs/assets/src/tailwind.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/ng-rx-store/src/environments/environment.ts",
+                  "with": "apps/ng-rx-store/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-rx-store:build:production"
+            },
+            "development": {
+              "browserTarget": "ng-rx-store:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ng-rx-store:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/ng-rx-store/src/**/*.ts",
+              "apps/ng-rx-store/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ng-rx-store"],
+          "options": {
+            "jestConfig": "apps/ng-rx-store/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ng-rx-store-e2e": {
+      "root": "apps/ng-rx-store-e2e",
+      "sourceRoot": "apps/ng-rx-store-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ng-rx-store-e2e/cypress.json",
+            "devServerTarget": "ng-rx-store:serve:development",
+            "tsConfig": "apps/ng-rx-store-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ng-rx-store:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/ng-rx-store-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "product": "libs/product"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
+  },
+  "generators": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "ng-rx-store"
+}
