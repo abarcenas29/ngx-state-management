@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { CartService } from '@app/ng-rx-store/app/cart.service';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { CartService } from '@app/ng-rx-store/app/cart.service';
 export class CartCardService {
   constructor(private _cartService: CartService) {}
 
-  removeItem(index: number) {
+  removeItem(index: string) {
     this._cartService.deleteItemCart(index);
   }
 }

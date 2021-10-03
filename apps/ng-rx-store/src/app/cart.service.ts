@@ -5,7 +5,7 @@ import { Product } from '@demo/interfaces';
 
 @Injectable()
 export class CartService {
-  private cartList: Product[] = [];
+  private cartList: Map<string, Product> = new Map();
   private _cartList$ = new BehaviorSubject<Product[]>([]);
   private _cartCount$ = new BehaviorSubject<number>(0);
 
@@ -13,14 +13,26 @@ export class CartService {
   readonly cartCount$ = this._cartCount$.asObservable();
 
   addCart(product: Product) {
-    this.cartList.push(product);
+    this.cartList.set(product?.id, product);
+    const tempArray: Product[] = this._convertMapToArray(this.cartList);
 
-    this._cartList$.next(this.cartList);
-    this._cartCount$.next(this.cartList.length);
+    this._cartList$.next(tempArray);
+    this._cartCount$.next(tempArray.length);
   }
 
-  deleteItemCart(index: number) {
-    const tempCart = this.cartList.splice(index, 1);
-    this._cartList$.next(tempCart);
+  deleteItemCart(id: string) {
+    this.cartList.delete(id);
+    const tempArray: Product[] = this._convertMapToArray(this.cartList);
+
+    this._cartList$.next([...tempArray]);
+    this._cartCount$.next(tempArray.length);
+  }
+
+  private _convertMapToArray(map: Map<string, Product>): Product[] {
+    const tempArray: Product[] = [];
+
+    map.forEach((v: Product) => tempArray.push(v));
+
+    return tempArray;
   }
 }
