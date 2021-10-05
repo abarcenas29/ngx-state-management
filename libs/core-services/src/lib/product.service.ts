@@ -4,9 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Product } from '@demo/interfaces';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProductService {
   private _productList = new BehaviorSubject<Product[]>([]);
   private _product = new BehaviorSubject<Product | undefined>(undefined);

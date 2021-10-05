@@ -30,6 +30,9 @@
     "cart": {
       "tags": ["type:ui"]
     },
+    "core-services": {
+      "tags": []
+    },
     "interfaces": {
       "tags": ["type:interface"]
     },

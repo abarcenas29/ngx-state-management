@@ -7,8 +7,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { CommonComponentsModule } from '@demo/common-library';
 import { AppComponent } from './app.component';
-import { ProductService } from './product.service';
-import { CartService } from './cart.service';
+import { ProductService, CartService } from '@demo/core-services';
 
 const routes: Routes = [
   {

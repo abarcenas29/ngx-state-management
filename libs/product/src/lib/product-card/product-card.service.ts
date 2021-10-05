@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CartService } from '@app/ng-rx-store/app/cart.service';
+import { CartService } from '@demo/core-services';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Product } from '@demo/interfaces';
 
 @Injectable()

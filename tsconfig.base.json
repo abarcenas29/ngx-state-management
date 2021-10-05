@@ -19,6 +19,7 @@
       "@demo/assets": ["libs/assets/src/index.ts"],
       "@demo/cart": ["libs/cart/src/index.ts"],
       "@demo/common-library": ["libs/common-components/src/index.ts"],
+      "@demo/core-services": ["libs/core-services/src/index.ts"],
       "@demo/interfaces": ["libs/interfaces/src/index.ts"],
       "@demo/products": ["libs/product/src/index.ts"]
     }

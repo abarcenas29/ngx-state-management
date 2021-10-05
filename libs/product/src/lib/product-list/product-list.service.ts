@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { ProductService } from '@app/ng-rx-store/app/product.service';
+import { ProductService } from '@demo/core-services';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Product } from '@demo/interfaces';
 
