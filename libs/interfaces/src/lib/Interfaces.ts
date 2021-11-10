@@ -13,3 +13,12 @@ export interface Product {
   description: string;
   rating: number;
 }
+
+export interface AppState {
+  product: {
+    products: Product[];
+  };
+  cart: {
+    carts: Product[];
+  };
+}
