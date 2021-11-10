@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ProductService } from '@demo/core-services';
+import { ProductStore } from '@demo/core-services';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Product } from '@demo/interfaces';
 
@@ -9,11 +9,7 @@ import { Product } from '@demo/interfaces';
 export class ProductListService {
   readonly productList$ = new Observable<Product[]>();
 
-  constructor(private product: ProductService) {
-    this.productList$ = this.product.productList;
-  }
-
-  getList() {
-    this.product.getList();
+  constructor(private product: ProductStore) {
+    this.productList$ = this.product.products$;
   }
 }

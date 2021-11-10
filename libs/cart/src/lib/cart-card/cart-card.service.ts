@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { CartService } from '@demo/core-services';
+import { CartStore } from '@demo/core-services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartCardService {
-  constructor(private _cartService: CartService) {}
+  constructor(private _cartStore: CartStore) {}
 
   removeItem(index: string) {
-    this._cartService.deleteItemCart(index);
+    this._cartStore.deleteCart(index);
   }
 }

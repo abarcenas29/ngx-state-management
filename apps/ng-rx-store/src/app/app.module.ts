@@ -4,10 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 import { CommonComponentsModule } from '@demo/common-library';
 import { AppComponent } from './app.component';
-import { ProductService, CartService } from '@demo/core-services';
+import { CartStore, ProductStore } from '@demo/core-services';
 
 const routes: Routes = [
   {
@@ -36,9 +37,10 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
+    StoreDevtoolsModule.instrument({maxAge: 25}),
     ToastrModule.forRoot(),
   ],
-  providers: [ProductService, CartService, ToastrService],
+  providers: [CartStore, ProductStore, ToastrService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
