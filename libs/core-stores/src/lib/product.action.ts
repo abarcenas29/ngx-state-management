@@ -2,11 +2,14 @@ import { createAction, props } from '@ngrx/store';
 
 import { Product } from '@demo/interfaces';
 
-export const init = createAction('[Product] Init');
 
-export const loadProduct = createAction(
-  '[Product/Api] Load Product Success',
-  props<{ product: Product[] }>()
+export const fetchProduct = createAction(
+  '[Product/Api] Fetch Product'
+)
+
+export const fetchProductSuccess = createAction(
+  '[Product/Api] Product Success',
+  props<{ products: Product[] }>()
 );
 
 export const loadProductFail = createAction(

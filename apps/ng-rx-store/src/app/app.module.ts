@@ -8,13 +8,13 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CommonComponentsModule } from '@demo/common-library';
 import { AppComponent } from './app.component';
 import { ProductService, CartService } from '@demo/core-services';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { environment } from '../environments/environment';
 
-import { reducer as productReducer } from '@demo/core-store';
+import { productReducer, cartReducer, ProductEffects } from '@demo/core-store';
 
 const routes: Routes = [
   {
@@ -44,7 +44,9 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     StoreModule.forRoot(
       {
+        router: routerReducer,
         product: productReducer,
+        cart: cartReducer
       },
       {
         metaReducers: !environment.production ? [] : [],
@@ -54,11 +56,11 @@ const routes: Routes = [
         },
       }
     ),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ProductEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot(),
   ],
-  providers: [ProductService, CartService, ToastrService],
+  providers: [ProductService, CartService, ToastrService, Store],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

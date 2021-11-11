@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Store } from '@ngrx/store'
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { Product } from '@demo/interfaces';
-import { CartCardService } from './cart-card.service';
+import { Product, AppState } from '@demo/interfaces';
+import { removeCart as removeCartAction } from '@demo/core-store'
 
 @Component({
   selector: 'ng-state-management-cart-card',
@@ -13,15 +14,14 @@ import { CartCardService } from './cart-card.service';
 export class CartCardComponent {
   @Input() product: Product | undefined;
   @Input() index: number | undefined;
-  @Output() id = new EventEmitter();
 
   constructor(
-    private _cartCardService: CartCardService,
-    private _toastService: ToastrService
+    private _toastService: ToastrService,
+    private _store: Store<AppState>
   ) {}
 
   btnClick(id: string) {
-    this._cartCardService.removeItem(id);
+    this._store.dispatch(removeCartAction({id}))
     this._toastService.success('Item deleted');
   }
 }

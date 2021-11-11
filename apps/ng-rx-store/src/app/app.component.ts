@@ -1,6 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartService } from '@demo/core-services';
+import { Store } from '@ngrx/store'
+
+import { selectCartCount } from '@demo/core-store'
+import { AppState } from '@demo/interfaces';
 
 @Component({
   selector: 'ng-state-management-root',
@@ -10,9 +13,7 @@ import { CartService } from '@demo/core-services';
 })
 export class AppComponent {
   title = 'ng-rx-store';
-  readonly cartCount$ = new Observable<number>();
+  readonly cartCount$ = this._store.select(selectCartCount);
 
-  constructor(private _cartService: CartService) {
-    this.cartCount$ = this._cartService.cartCount$;
-  }
+  constructor(private _store: Store<AppState>) {}
 }

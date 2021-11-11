@@ -3,21 +3,21 @@ import { createReducer, on, Action } from '@ngrx/store';
 import * as ProductActions from './product.action';
 import { Product } from '@demo/interfaces';
 
-export interface State {
+export interface productState {
   products: Product[];
 }
 
-export const initialSate: State = {
+export const initialSate: productState = {
   products: [],
 };
 
-const productReducer = createReducer(
+const _productReducer = createReducer(
   initialSate,
-  on(ProductActions.init, (s) => ({
-    ...s,
+  on(ProductActions.fetchProductSuccess, (s, {products}) => ({
+    products
   }))
 );
 
-export function reducer(state: State | undefined, action: Action) {
-  return productReducer(state, action);
+export function productReducer(state: productState | undefined, action: Action) {
+  return _productReducer(state, action);
 }

@@ -5,7 +5,7 @@ import { Product } from '@demo/interfaces';
 export const init = createAction('[cart] Init');
 
 export const loadCart = createAction(
-  '[Cart] Load Cart Success',
+  '[Cart] Fetch Cart',
   props<{ cart: Product[] }>()
 );
 

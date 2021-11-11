@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AppState } from '@demo/interfaces';
+import { Store } from '@ngrx/store'
 
-import { CartListService } from './cart-list.service';
+import { selectCartList } from '@demo/core-store'
 
 @Component({
   selector: 'ng-state-management-cart-list',
@@ -8,9 +10,7 @@ import { CartListService } from './cart-list.service';
   styleUrls: ['./cart-list.component.scss'],
 })
 export class CartListComponent {
-  readonly cartList$;
+  readonly cartList$ = this._store.select(selectCartList);
 
-  constructor(private _cartService: CartListService) {
-    this.cartList$ = this._cartService.cartList$;
-  }
+  constructor(private _store : Store<AppState>) {}
 }

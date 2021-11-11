@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductListService } from './product-list.service';
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs';
+
+import { fetchProduct, selectProducts } from '@demo/core-store'
+import { AppState, Product } from '@demo/interfaces';
 
 @Component({
   selector: 'demo-product-product-list',
@@ -7,14 +11,11 @@ import { ProductListService } from './product-list.service';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  productList: number[] = [];
-  productList$;
+  productList$ = this._store.select(selectProducts);
 
-  constructor(private _productList: ProductListService) {
-    this.productList$ = this._productList.productList$;
-  }
+  constructor(private _store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this._productList.getList();
+    this._store.dispatch(fetchProduct())
   }
 }

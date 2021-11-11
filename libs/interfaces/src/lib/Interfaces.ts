@@ -15,10 +15,12 @@ export interface Product {
 }
 
 export interface AppState {
+  router: any,
   product: {
     products: Product[];
   };
   cart: {
     carts: Product[];
+    count: number
   };
 }
